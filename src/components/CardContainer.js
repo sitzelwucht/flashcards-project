@@ -10,7 +10,7 @@ export default function CardContainer() {
 
     return (
         <Container>
-                   <Card />
+            <Card />
         </Container>
  
     )
