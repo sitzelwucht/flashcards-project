@@ -1,11 +1,27 @@
-import logo from './logo.svg';
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './App.css';
+import Header from './components/Header'
+import CardContainer from './components/CardContainer'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core'
+import { orange, teal } from '@material-ui/core/colors';
+
+
+const theme = createMuiTheme({
+  palette: {
+    primary: teal,
+    secondary: orange,
+  },
+})
+
 
 function App() {
   return (
-    <div className="App">
-      hello this is flashcards app
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Header />
+        <CardContainer />
+      </div>
+    </ThemeProvider>
   );
 }
 
