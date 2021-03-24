@@ -10,8 +10,12 @@ const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'space-between',
         flex: 1,
-        margin: '100px auto'
+        paddingTop: 20
     },
+    banner: {
+        height: '30vh',
+        background: 'teal',
+    }
 })
 
 
@@ -26,20 +30,22 @@ export default function Header() {
     }
 
     return (
-        <Container className={classes.flex}>
-                <Typography variant="h1" component="h2" color="primary" gutterBottom>
-                    flashcards
-                </Typography> 
-                <Box >
-                  {
-                    !showForm &&  <Button variant="primary" color="secondary" startIcon={<AddIcon />} onClick={handleShow}>
-                    Add card
-                    </Button>
-                  } 
+        <Box className={classes.banner} boxShadow={4}>
+            <Container className={classes.flex}>
+                    <Typography variant="h1" component="h2" color="secondary" gutterBottom>
+                        flashcards
+                    </Typography> 
+                    <Box >
+                    {
+                        !showForm &&  <Button variant="primary" color="secondary" startIcon={<AddIcon />} onClick={handleShow}>
+                        Add card
+                        </Button>
+                    } 
 
-                {showForm && <Create />}
-                  
-                </Box>
-        </Container>
+                    {showForm && <Create />}
+                    
+                    </Box>
+            </Container>
+        </Box>
     )
 }

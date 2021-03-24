@@ -1,21 +1,35 @@
-import React from 'react'
-import { Box, Typography } from '@material-ui/core'
+import React, { useState } from 'react'
+import { Box, Typography, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import EditIcon from '@material-ui/icons/Edit';
 
 const useStyles = makeStyles({
     box: {
-        border: '1px solid grey',
         maxWidth: '300px',
-        padding: '5px'
+        minWidth: '300px',
+        maxHeight: '220px',
+        minHeight: '220px',
+        border: '1px black primary',
+        background: '#f4f4f4',
+        margin: 20,
+        textAlign: 'center'
     },
     header: {
         fontSize: 24,
+        padding: 10,
+        margin: 10,
         color: 'orange',
     },
     text: {
         fontSize: 18,
-        color: 'grey'
+        padding: 10,
+        margin: 10,
     },
+    flex: {
+        display: 'flex',
+        justifyContent: 'space-between'
+    }
     
 })
 
@@ -23,11 +37,26 @@ export default function Card(props) {
 
     const classes = useStyles()
 
-    return (
-        <Box className={classes.box}>
-            <Typography className={classes.header}>{props.question}</Typography>
+    const [show, setShow] = useState(false)
 
-            <Typography className={classes.text}>{props.answer}</Typography>
+    const handleShow = () =>  {
+        show ? setShow(false) : setShow(true)
+    }
+
+
+    return (
+        <Box boxShadow={4} className={classes.box}>
+           <Box className={classes.flex}>
+                <Button><EditIcon /></Button>
+                <Button onClick={props.onRemove}><DeleteOutlineIcon /></Button>
+            </Box> 
+            <Typography className={classes.header}>{props.question}</Typography>
+            <Button align="center" onClick={handleShow}>Show/hide answer</Button>
+
+            {
+              show && <Typography className={classes.text} color="primary">{props.answer}</Typography>
+            
+            }
 
         </Box>
     )
