@@ -1,7 +1,8 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+
 import './App.css';
 import Header from './components/Header'
 import CardContainer from './components/CardContainer'
+import { CardProvider } from './contexts/CardProvider'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core'
 import { orange, teal } from '@material-ui/core/colors';
 
@@ -17,10 +18,12 @@ const theme = createMuiTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
+    <CardProvider>
       <div className="App">
         <Header />
         <CardContainer />
       </div>
+      </CardProvider>
     </ThemeProvider>
   );
 }

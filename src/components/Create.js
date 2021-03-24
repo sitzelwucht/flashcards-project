@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Container, Button, TextField } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
+import { useCards } from '../contexts/CardProvider'
 
 const useStyles = makeStyles({
     flex: {
@@ -22,6 +23,8 @@ export default function Create() {
     const [answer, setAnswer] = useState()
     const [answerError, setAnswerError] = useState()
 
+    const { createCard } = useCards()
+
     const handleSubmit = (e) => {
         e.preventDefault()
         setQuestionError(false)
@@ -33,6 +36,8 @@ export default function Create() {
         if (!answer) {
             setAnswerError(true)
         }
+
+        createCard(question, answer)
     }
 
 

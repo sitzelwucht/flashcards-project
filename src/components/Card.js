@@ -19,17 +19,15 @@ const useStyles = makeStyles({
     
 })
 
-export default function Card() {
+export default function Card(props) {
 
     const classes = useStyles()
 
     return (
         <Box className={classes.box}>
-            <Typography
-            className={classes.header}>This is a header
-            </Typography>
+            <Typography className={classes.header}>{props.question}</Typography>
 
-            <Typography className={classes.text}>this is text</Typography>
+            <Typography className={classes.text}>{props.answer}</Typography>
 
         </Box>
     )
