@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Typography, Button } from '@material-ui/core'
+import { Box, Typography, Button, Card } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import EditIcon from '@material-ui/icons/Edit';
@@ -8,12 +8,13 @@ const useStyles = makeStyles({
     box: {
         maxWidth: '300px',
         minWidth: '300px',
-        maxHeight: '260px',
+        maxHeight: '330px',
         minHeight: '220px',
         border: '1px black primary',
         background: '#f4f4f4',
         margin: 20,
-        textAlign: 'center'
+        textAlign: 'center',
+        overFlow: 'hidden'
     },
     header: {
         fontSize: 24,
@@ -25,7 +26,9 @@ const useStyles = makeStyles({
         fontSize: 18,
         padding: 10,
         margin: 10,
-        overflow: 'auto'
+        overflowY: 'auto',
+        maxHeight: '150px',
+
     },
     flex: {
         display: 'flex',
@@ -34,7 +37,7 @@ const useStyles = makeStyles({
     
 })
 
-export default function Card(props) {
+export default function FlashCard(props) {
 
     const classes = useStyles()
 
@@ -46,7 +49,7 @@ export default function Card(props) {
 
 
     return (
-        <Box boxShadow={4} className={classes.box}>
+        <Card boxShadow={4} className={classes.box}>
            <Box className={classes.flex}>
                 <Button><EditIcon /></Button>
                 <Button onClick={props.onRemove}><DeleteOutlineIcon /></Button>
@@ -59,6 +62,6 @@ export default function Card(props) {
             
             }
 
-        </Box>
+        </Card>
     )
 }

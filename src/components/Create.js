@@ -40,9 +40,11 @@ export default function Create() {
 
         if (!question) {
             setQuestionError(true)
+            return
         }
         if (!answer) {
             setAnswerError(true)
+            return
         }
 
         createCard(question, answer)

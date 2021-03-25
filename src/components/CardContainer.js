@@ -1,5 +1,5 @@
 import React from 'react'
-import Card from './Card'
+import FlashCard from './FlashCard'
 import { Container } from '@material-ui/core'
 import { useCards } from '../contexts/CardProvider'
 import { makeStyles } from '@material-ui/core'
@@ -7,8 +7,10 @@ import { makeStyles } from '@material-ui/core'
 const useStyles = makeStyles({
     flex: {
         display: 'flex',
+        justifyContent: 'space-evenly',
         flexWrap: 'wrap',
-        width: '100%'
+        width: '100%',
+        marginTop: 20
     }
 })
 
@@ -29,7 +31,7 @@ export default function CardContainer() {
         <Container className={classes.flex}>
         {
             cards.map((item, i) => {
-                return <Card key={i} question={item.question} answer={item.answer} onRemove={() => handleRemove(item)}/>
+                return <FlashCard key={i} question={item.question} answer={item.answer} onRemove={() => handleRemove(item)}/>
             })  
         }
         </Container>

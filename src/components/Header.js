@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     },
     banner: {
         height: '30vh',
-        background: 'teal',
+        background: '#598072',
     }
 })
 

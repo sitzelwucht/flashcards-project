@@ -3,13 +3,14 @@ import Header from './components/Header'
 import CardContainer from './components/CardContainer'
 import { CardProvider } from './contexts/CardProvider'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core'
-import { orange, lightGreen } from '@material-ui/core/colors';
+import { orange, amber,deepOrange } from '@material-ui/core/colors';
 
 
 const theme = createMuiTheme({
   palette: {
-    primary: lightGreen,
+    primary: amber,
     secondary: orange,
+    error: deepOrange
   },
 })
 
