@@ -33,6 +33,7 @@ export default function Create() {
         showForm ? setShowForm(false) : setShowForm(true)
     }
 
+    // check if fields are empty, then submit, hide form and set field values to null
     const handleSubmit = (e) => {
         e.preventDefault()
         setQuestionError(false)
@@ -49,6 +50,8 @@ export default function Create() {
 
         createCard(question, answer)
         setShowForm(false)
+        setQuestion(null)
+        setAnswer(null)
     }
 
 

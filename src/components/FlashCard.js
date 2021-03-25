@@ -3,6 +3,8 @@ import { Box, Typography, Button, Card } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import EditIcon from '@material-ui/icons/Edit';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
 const useStyles = makeStyles({
     box: {
@@ -55,7 +57,7 @@ export default function FlashCard(props) {
                 <Button onClick={props.onRemove}><DeleteOutlineIcon /></Button>
             </Box> 
             <Typography className={classes.header}>{props.question}</Typography>
-            <Button align="center" onClick={handleShow}>Show/hide answer</Button>
+            <Button align="center" onClick={handleShow}> { show ? <VisibilityOffIcon /> : <VisibilityIcon /> } answer </Button>
 
             {
               show && <Typography className={classes.text} color="primary">{props.answer}</Typography>
