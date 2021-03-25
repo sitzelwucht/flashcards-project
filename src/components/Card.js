@@ -8,7 +8,7 @@ const useStyles = makeStyles({
     box: {
         maxWidth: '300px',
         minWidth: '300px',
-        maxHeight: '220px',
+        maxHeight: '260px',
         minHeight: '220px',
         border: '1px black primary',
         background: '#f4f4f4',
@@ -25,6 +25,7 @@ const useStyles = makeStyles({
         fontSize: 18,
         padding: 10,
         margin: 10,
+        overflow: 'auto'
     },
     flex: {
         display: 'flex',

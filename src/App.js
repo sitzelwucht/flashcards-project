@@ -1,5 +1,4 @@
 
-import './App.css';
 import Header from './components/Header'
 import CardContainer from './components/CardContainer'
 import { CardProvider } from './contexts/CardProvider'

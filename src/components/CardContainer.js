@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Card from './Card'
 import { Container } from '@material-ui/core'
 import { useCards } from '../contexts/CardProvider'
