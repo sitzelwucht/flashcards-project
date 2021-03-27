@@ -4,7 +4,7 @@ import CardContainer from './components/CardContainer'
 import { CardProvider } from './contexts/CardProvider'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core'
 import { orange, amber,deepOrange } from '@material-ui/core/colors';
-
+import { ModeProvider } from './contexts/ModeProvider'
 
 const theme = createMuiTheme({
   palette: {
@@ -16,15 +16,18 @@ const theme = createMuiTheme({
 
 
 function App() {
+
   return (
-    <ThemeProvider theme={theme}>
-    <CardProvider>
-      <div className="App">
-        <Header />
-        <CardContainer />
-      </div>
-      </CardProvider>
-    </ThemeProvider>
+    <ModeProvider>
+      <ThemeProvider theme={theme}>
+      <CardProvider>
+        <div className="App">
+          <Header />
+          <CardContainer />
+        </div>
+        </CardProvider>
+      </ThemeProvider>
+    </ModeProvider>
   );
 }
 
