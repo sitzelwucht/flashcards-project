@@ -19,7 +19,7 @@ export default function CardContainer() {
 
     const classes = useStyles()
     const { cards } = useCards()
-    const { removeCard } = useCards()
+    const { removeCard, editCard } = useCards()
 
 
     const handleRemove = (elem) => {
@@ -27,6 +27,9 @@ export default function CardContainer() {
      
     }
 
+    const handleEdit = (elem) => {
+        removeCard(cards, elem.question)
+      }
 
     return (
         <Container className={classes.flex}>
@@ -36,7 +39,9 @@ export default function CardContainer() {
                         key={i} 
                         question={item.question} 
                         answer={item.answer} 
-                        onRemove={() => handleRemove(item)} />
+                        onRemove={() => handleRemove(item)} 
+                        onEdit={() => handleEdit(item) }   
+                        />
             })  
         }
         </Container>

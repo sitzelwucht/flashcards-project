@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { Box, Typography, Button, Card } from '@material-ui/core'
+import { Box, Typography, Button, Card, TextField } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
-import ModalComponent from './ModalComponent';
+import { useCards } from '../contexts/CardProvider'
+import EditIcon from '@material-ui/icons/Edit';
 
 
 const useStyles = makeStyles({
@@ -43,28 +44,51 @@ const useStyles = makeStyles({
 export default function FlashCard(props) {
 
     const classes = useStyles()
+    const { cards, editCard, createCard } = useCards()
+    const [showAnswer, setShowAnswer] = useState(false)
+    const [showEditing, setShowEditing] = useState(false)
 
-    const [show, setShow] = useState(false)
+    const [question, setQuestion] = useState()
+    const [answer, setAnswer] = useState()
 
-    const handleShow = () =>  {
-        show ? setShow(false) : setShow(true)
+    const handleShowAnswer = () =>  {
+        showAnswer ? setShowAnswer(false) : setShowAnswer(true)
     }
 
+    const handleShowEditing= () => {
+        setShowEditing(true)
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        props.onEdit()
+        createCard(question, answer)
+        setShowEditing(false)
+    }
+
+    const questionText = (<>
+                            <Typography className={classes.header}>{props.question}</Typography>
+                            <Button align="center" onClick={handleShowAnswer}> { showAnswer ? <VisibilityOffIcon /> : <VisibilityIcon /> } answer </Button>
+                            { showAnswer && <Typography className={classes.text}>{props.answer}</Typography> } 
+                        </>)
+
+    const editForm = (<form style={{display: 'flex', flexDirection: 'column', margin: '20px'}} onSubmit={handleSubmit}>
+                            <TextField defaultValue={props.question} onChange={(e) => setQuestion(e.target.value)} />
+                            <TextField defaultValue={props.answer} onChange={(e) => setAnswer(e.target.value)} />
+                            <Button type="submit">Save</Button>
+                        </form> )
 
     return (
         <Card boxShadow={4} className={classes.box}>
            <Box className={classes.flex}>
-                <ModalComponent />              
+                 
+                <Button onClick={handleShowEditing}><EditIcon /></Button>
+
                 <Button onClick={props.onRemove}><DeleteOutlineIcon /></Button>
             </Box> 
-            <Typography className={classes.header}>{props.question}</Typography>
-            <Button align="center" onClick={handleShow}> { show ? <VisibilityOffIcon /> : <VisibilityIcon /> } answer </Button>
-
             {
-              show && <Typography className={classes.text} color="primary">{props.answer}</Typography>
-            
+                showEditing ? editForm : questionText
             }
-
         </Card>
     )
 }
