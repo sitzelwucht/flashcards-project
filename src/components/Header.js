@@ -72,7 +72,9 @@ export default function Header() {
             <Box className={mode === 'darkMode' ? classes.flexDark : classes.flex}>
                     <Container className={classes.bordered}>
                         <Typography 
-                            className={cards.length > 0 ? (mode === 'darkMode' ? classes.minimizedDark : classes.minimized) : (mode === 'darkMode' ? classes.maximizedDark : classes.maximized) } 
+                            className={cards.length > 0 ? 
+                            (mode === 'darkMode' ? classes.minimizedDark : classes.minimized) : 
+                            (mode === 'darkMode' ? classes.maximizedDark : classes.maximized) } 
                             variant="h1" 
                             component="h2" 
                             color="secondary" 

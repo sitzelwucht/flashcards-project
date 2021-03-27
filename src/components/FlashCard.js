@@ -25,7 +25,7 @@ const useStyles = makeStyles({
     boxDark: {
         maxWidth: '330px',
         minWidth: '330px',
-        maxHeight: '330px',
+        maxHeight: '300px',
         minHeight: '220px',
         border: '1px black primary',
         margin: 20,
@@ -82,6 +82,19 @@ const inputField = {
     borderBottom: '1px solid grey',
     resize: 'none'
 }
+
+const inputDark = {
+    border: '0',
+    outline: 'none',
+    fontSize: 16,
+    marginTop: 15,
+    padding: 7,
+    fontFamily: 'monospace',
+    background: 'rgba(0,0,0,0)',
+    borderBottom: '1px solid grey',
+    resize: 'none',
+    color: 'rgb(230,230,230)'
+}
 export default function FlashCard(props) {
 
     const classes = useStyles()
@@ -114,25 +127,25 @@ export default function FlashCard(props) {
 
     const questionText = (<>
                             <Typography className={classes.header}>{props.question}</Typography>
-                            <Button align="center" onClick={handleShowAnswer}> { showAnswer ? <VisibilityOffIcon /> : <VisibilityIcon /> } answer </Button>
+                            <Button 
+                                variant="contained" 
+                                color="primary" 
+                                align="center" 
+                                onClick={handleShowAnswer}
+                                disableElevation> { showAnswer ? <VisibilityOffIcon /> : <VisibilityIcon /> } answer </Button>
                             { showAnswer && <Typography className={ mode === 'darkMode' ? classes.textDark : classes.text }>{props.answer}</Typography> } 
                         </>)
 
     const editForm = (<form style={{display: 'flex', flexDirection: 'column', margin: '20px'}} onSubmit={handleSubmit}>
 
                             <input 
-                            style={inputField} 
+                            style={mode === 'darkMode' ? inputDark : inputField} 
                             ref={questionRef} 
                             defaultValue={props.question} 
                             onChange={(e) => setQuestion(e.target.value)} />
 
-                            {/* <input 
-                            style={inputField} 
-                            ref={answerRef} 
-                            defaultValue={props.answer} 
-                            onChange={(e) => setAnswer(e.target.value)} /> */}
                            <textarea 
-                            style={inputField}
+                            style={mode === 'darkMode' ? inputDark : inputField}
                             rows="7"
                             ref={answerRef} 
                             defaultValue={props.answer} 
@@ -143,8 +156,8 @@ export default function FlashCard(props) {
                         </form> )
 
     return (
-        <Card boxShadow={4} className={mode === 'darkMode' ? classes.boxDark : classes.box}>
-           <Box className={classes.flex}>
+        <Card boxShadow={4} className={mode === 'darkMode' ? classes.boxDark : classes.box }>
+           <Box className={mode === 'darkMode' ? classes.flexDark :  classes.flex }>
                  
                 <Button onClick={handleShowEditing}><EditIcon /></Button>
 
