@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Box, Typography, Button, Card, TextField } from '@material-ui/core'
+import React, { useState, useRef } from 'react'
+import { Box, Typography, Button, Card } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import VisibilityIcon from '@material-ui/icons/Visibility';
@@ -24,29 +24,42 @@ const useStyles = makeStyles({
         fontSize: 24,
         padding: 10,
         margin: 10,
-        color: 'orange',
+        color: 'teal',
     },
     text: {
-        fontSize: 18,
+        fontSize: 16,
         padding: 10,
         margin: 10,
         overflowY: 'auto',
         maxHeight: '150px',
-
     },
     flex: {
         display: 'flex',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        background: '#e9e9e9'
     }
     
 })
 
+const inputField = {
+    border: '0',
+    outline: 'none',
+    fontSize: 16,
+    marginBottom: 5,
+    padding: 7,
+    fontFamily: 'monospace',
+    background: 'rgba(0,0,0,0)',
+    borderBottom: '1px solid grey'
+}
 export default function FlashCard(props) {
 
     const classes = useStyles()
-    const { cards, editCard, createCard } = useCards()
+    const { createCard } = useCards()
     const [showAnswer, setShowAnswer] = useState(false)
     const [showEditing, setShowEditing] = useState(false)
+
+    const questionRef = useRef()
+    const answerRef = useRef()
 
     const [question, setQuestion] = useState()
     const [answer, setAnswer] = useState()
@@ -59,10 +72,11 @@ export default function FlashCard(props) {
         setShowEditing(true)
     }
 
+    // delete old entry, replace with a new one
     const handleSubmit = (e) => {
         e.preventDefault()
-        props.onEdit()
-        createCard(question, answer)
+        props.onAction()
+        createCard(questionRef.current.value, answerRef.current.value)
         setShowEditing(false)
     }
 
@@ -73,9 +87,26 @@ export default function FlashCard(props) {
                         </>)
 
     const editForm = (<form style={{display: 'flex', flexDirection: 'column', margin: '20px'}} onSubmit={handleSubmit}>
-                            <TextField defaultValue={props.question} onChange={(e) => setQuestion(e.target.value)} />
-                            <TextField defaultValue={props.answer} onChange={(e) => setAnswer(e.target.value)} />
+
+                            <input 
+                            style={inputField} 
+                            ref={questionRef} 
+                            defaultValue={props.question} 
+                            onChange={(e) => setQuestion(e.target.value)} />
+
+                            {/* <input 
+                            style={inputField} 
+                            ref={answerRef} 
+                            defaultValue={props.answer} 
+                            onChange={(e) => setAnswer(e.target.value)} /> */}
+                           <textarea 
+                            style={inputField} 
+                            ref={answerRef} 
+                            defaultValue={props.answer} 
+                            onChange={(e) => setAnswer(e.target.value)} />
+
                             <Button type="submit">Save</Button>
+
                         </form> )
 
     return (
@@ -84,7 +115,7 @@ export default function FlashCard(props) {
                  
                 <Button onClick={handleShowEditing}><EditIcon /></Button>
 
-                <Button onClick={props.onRemove}><DeleteOutlineIcon /></Button>
+                <Button onClick={props.onAction}><DeleteOutlineIcon /></Button>
             </Box> 
             {
                 showEditing ? editForm : questionText
