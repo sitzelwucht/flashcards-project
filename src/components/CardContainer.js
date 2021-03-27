@@ -7,23 +7,21 @@ import { useMode } from '../contexts/ModeProvider'
 
 
 const useStyles = makeStyles({
+    light: {
+        width: '100%',
+        marginTop: 20,
+    },
+    dark: {
+        width: '100%',
+        height: '100vh',
+        background: 'rgb(20,20,20)',
+        color: 'white',
+    },
     flex: {
         display: 'flex',
         justifyContent: 'space-evenly',
         flexWrap: 'wrap',
-        width: '100%',
-        marginTop: 20
-    },
-    dark: {
-        display: 'flex',
-        justifyContent: 'space-evenly',
-        flexWrap: 'wrap',
-        width: '100%',
-         height: '100vh',
-        background: 'rgb(20,20,20)',
-        color: 'white'
-    },
-
+    }
 })
 
 
@@ -41,8 +39,8 @@ export default function CardContainer() {
 
 
     return (
-        <Box className={mode === 'darkMode' ? classes.dark : classes.flex }>
-            <Box>
+        <Box className={mode === 'darkMode' ? classes.dark : classes.light }>
+            <Box className={classes.flex}>
             {
                 cards.map((item, i) => {
                     return <FlashCard 

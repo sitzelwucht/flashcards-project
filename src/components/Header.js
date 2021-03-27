@@ -48,9 +48,6 @@ const useStyles = makeStyles({
         fontSize: '60px',
         background: 'rgb(25, 50, 70)',
     },
-    bordered: {
-
-    }
 })
 
 
@@ -70,7 +67,7 @@ export default function Header() {
     return (
         <Box boxShadow={4}>
             <Box className={mode === 'darkMode' ? classes.flexDark : classes.flex}>
-                    <Container className={classes.bordered}>
+                    <Container>
                         <Typography 
                             className={cards.length > 0 ? 
                             (mode === 'darkMode' ? classes.minimizedDark : classes.minimized) : 
