@@ -27,8 +27,13 @@ export function CardProvider({children}) {
         setCards(updatedCards)
     }
     
+    const editCard = (subKey, cardArray, editedQ, editedA) => {
+        removeCard(cardArray, subKey)
+        createCard(editedQ, editedA)
+    }
+
     return (
-        <CardContext.Provider value={{ cards, createCard, removeCard }}>
+        <CardContext.Provider value={{ cards, createCard, removeCard, editCard }}>
             {children}
         </CardContext.Provider>
     )

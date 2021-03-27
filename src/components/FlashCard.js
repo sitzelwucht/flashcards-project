@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import { Box, Typography, Button, Card } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-import EditIcon from '@material-ui/icons/Edit';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import ModalComponent from './ModalComponent';
+
 
 const useStyles = makeStyles({
     box: {
@@ -53,7 +54,7 @@ export default function FlashCard(props) {
     return (
         <Card boxShadow={4} className={classes.box}>
            <Box className={classes.flex}>
-                <Button><EditIcon /></Button>
+                <ModalComponent />              
                 <Button onClick={props.onRemove}><DeleteOutlineIcon /></Button>
             </Box> 
             <Typography className={classes.header}>{props.question}</Typography>

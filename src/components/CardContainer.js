@@ -27,11 +27,16 @@ export default function CardContainer() {
      
     }
 
+
     return (
         <Container className={classes.flex}>
         {
             cards.map((item, i) => {
-                return <FlashCard key={i} question={item.question} answer={item.answer} onRemove={() => handleRemove(item)}/>
+                return <FlashCard 
+                        key={i} 
+                        question={item.question} 
+                        answer={item.answer} 
+                        onRemove={() => handleRemove(item)} />
             })  
         }
         </Container>
